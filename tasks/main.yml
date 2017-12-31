@@ -19,7 +19,7 @@
 
 - name: create oc config credentials configuration
   shell: rm -f '{{ oc_config_file_location }}'; oc login --config='{{ oc_config_file_location }}' {{ lookup('env','K8S_AUTH_HOST') }} --username={{ lookup('env','K8S_AUTH_USERNAME') }} --password={{ lookup('env','K8S_AUTH_PASSWORD') }} --insecure-skip-tls-verify=true
-  #no_log: True
+  no_log: True
 
 - name: create oc config set cluster
   command: oc config --config='{{ oc_config_file_location }}' set-cluster {{ cluster }} --insecure-skip-tls-verify=true --server={{ lookup('env','K8S_AUTH_HOST') }}
