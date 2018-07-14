@@ -1,7 +1,7 @@
 ---
 - name: set oc cluster
   set_fact:
-    cluster: "{{ lookup('env','K8S_AUTH_HOST') | replace('https://', '') | replace('.', '-') | regex_replace('^(.+)(\/)$','\\1') | replace('.', '-') }}"
+    cluster: "{{ lookup('env','K8S_AUTH_HOST') | regex_replace('^(.+)(/)$','\\1') | replace('https://', '') | replace('.', '-') | replace('.', '-') }}"
 
 - name: set oc context
   set_fact:
