@@ -1,4 +1,5 @@
 ---
+
 - name: set oc cluster
   set_fact:
     cluster: "{{ lookup('env','K8S_AUTH_HOST') | regex_replace('^(.+)(/)$','\\1') | replace('https://', '') | replace('.', '-') | replace('.', '-') }}"

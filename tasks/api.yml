@@ -1,0 +1,14 @@
+---
+
+- name: log in to cluster
+  k8s_auth:
+    username: "{{ lookup('env','K8S_AUTH_USERNAME') }}"
+    password: "{{ lookup('env','K8S_AUTH_PASSWORD') }}"
+    host: "{{ lookup('env','K8S_AUTH_HOST') }}"
+    validate_certs: "{{ lookup('env','K8S_AUTH_VERIFY_SSL') | bool }}"
+  register: k8s_auth_results
+
+- name: set api_key
+  set_fact:
+    api_key: "{{ k8s_auth_results.k8s_auth.api_key }}"
+  no_log: true
