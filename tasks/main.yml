@@ -1,3 +1,3 @@
 ---
 
-- include_tasks: "{{ oc_auth_type }}.yml"
+- include_tasks: "{{ oc_auth_type }}-{{ role_action }}.yml"

@@ -11,5 +11,5 @@
 
 - name: set api_key
   set_fact:
-    api_key: "{{ k8s_auth_results.k8s_auth.api_key | default('') }}"
+    api_key: "{{ k8s_auth_results.k8s_auth.api_key }}"
   no_log: true

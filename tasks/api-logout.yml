@@ -1,0 +1,14 @@
+---
+
+- name: cluster {{ role_action }}
+  k8s_auth:
+    state: '{{ state }}'
+    host: "{{ lookup('env','K8S_AUTH_HOST') }}"
+    api_key: "{{ api_key }}"
+    validate_certs: "{{ lookup('env','K8S_AUTH_VERIFY_SSL') | bool }}"
+  register: k8s_auth_results
+
+- name: set api_key
+  set_fact:
+    api_key: ""
+  no_log: true
