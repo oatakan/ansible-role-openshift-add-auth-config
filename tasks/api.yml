@@ -1,7 +1,8 @@
 ---
 
-- name: log in to cluster
+- name: cluster {{ role_action }}
   k8s_auth:
+    state: '{{ state }}'
     username: "{{ lookup('env','K8S_AUTH_USERNAME') }}"
     password: "{{ lookup('env','K8S_AUTH_PASSWORD') }}"
     host: "{{ lookup('env','K8S_AUTH_HOST') }}"
@@ -10,5 +11,5 @@
 
 - name: set api_key
   set_fact:
-    api_key: "{{ k8s_auth_results.k8s_auth.api_key }}"
+    api_key: "{{ k8s_auth_results.k8s_auth.api_key | default('') }}"
   no_log: true

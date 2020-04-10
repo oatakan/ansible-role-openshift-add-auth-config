@@ -1,3 +1,4 @@
 ---
 
-oc_auth_type: cli
+oc_auth_type: api
+role_action: login
