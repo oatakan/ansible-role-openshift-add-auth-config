@@ -3,4 +3,4 @@
 state_map:
   login: present
   logout: absent
-state: "{{ state_map[role_action] }}"
+state: "{{ state_map[auth_action] }}"

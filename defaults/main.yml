@@ -1,4 +1,4 @@
 ---
 
 oc_auth_type: api
-role_action: login
+auth_action: login

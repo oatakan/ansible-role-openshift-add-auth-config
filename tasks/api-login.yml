@@ -1,6 +1,6 @@
 ---
 
-- name: cluster {{ role_action }}
+- name: cluster {{ auth_action }}
   k8s_auth:
     state: '{{ state }}'
     username: "{{ lookup('env','K8S_AUTH_USERNAME') }}"
