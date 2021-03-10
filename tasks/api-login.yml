@@ -8,6 +8,9 @@
     host: "{{ lookup('env','K8S_AUTH_HOST') }}"
     validate_certs: "{{ lookup('env','K8S_AUTH_VERIFY_SSL') | bool }}"
   register: k8s_auth_results
+  until: k8s_auth_results is success
+  delay: 3
+  retries: 15
 
 - name: set api_key
   set_fact:
