@@ -1,7 +1,7 @@
 ---
 
 - name: cluster {{ auth_action }}
-  community.kubernetes.k8s_auth:
+  kubernetes.core.k8s_auth:
     state: '{{ state }}'
     host: "{{ lookup('env','K8S_AUTH_HOST') }}"
     api_key: "{{ api_key }}"
