@@ -1,5 +1,7 @@
 ---
 - hosts: localhost
   remote_user: root
+  vars:
+
   roles:
-    - ansible-role-openshift-add-auth-config
+    - ../../ansible-role-openshift-add-auth-config

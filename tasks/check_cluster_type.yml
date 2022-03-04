@@ -1,0 +1,17 @@
+---
+
+- block:
+    - name: get list of projects
+      k8s_info:
+        api_version: project.openshift.io/v1
+        kind: Project
+      register: project_list
+
+    - name: set cluster to openshift
+      set_fact:
+        cluster: openshift
+
+  rescue:
+    - name: set cluster to kubernetes
+      set_fact:
+        cluster: kubernetes
