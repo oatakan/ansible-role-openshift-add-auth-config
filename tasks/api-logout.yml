@@ -23,6 +23,7 @@
     api_key: "{{ api_key }}"
     validate_certs: "{{ lookup('env','K8S_AUTH_VERIFY_SSL') | bool }}"
   register: openshift_auth_results
+  when: cluster == 'openshift'
   until: openshift_auth_results is success
   delay: 3
   retries: 15
