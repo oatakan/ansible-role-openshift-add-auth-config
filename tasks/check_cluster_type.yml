@@ -1,17 +1,13 @@
 ---
 
-- block:
-    - name: get list of projects
-      k8s_info:
-        api_version: project.openshift.io/v1
-        kind: Project
-      register: project_list
+- name: get list of projects
+  k8s_info:
+    api_version: project.openshift.io/v1
+    kind: Project
+  register: project_list
+  failed_when: false
 
-    - name: set cluster to openshift
-      set_fact:
-        cluster: openshift
-
-  rescue:
-    - name: set cluster to kubernetes
-      set_fact:
-        cluster: kubernetes
+- name: set cluster to kubernetes
+  set_fact:
+    cluster: kubernetes
+  when: not project_list.api_found

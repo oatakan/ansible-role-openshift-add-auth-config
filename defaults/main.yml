@@ -2,3 +2,5 @@
 
 oc_auth_type: api
 auth_action: login
+
+cluster: openshift
