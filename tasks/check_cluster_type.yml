@@ -4,6 +4,7 @@
   k8s_info:
     api_version: project.openshift.io/v1
     kind: Project
+    validate_certs: "{{ lookup('env','K8S_AUTH_VERIFY_SSL') | bool }}"
   register: project_list
   failed_when: false
 
