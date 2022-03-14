@@ -17,12 +17,13 @@
 #     api_key: "{{ k8s_auth_results.k8s_auth.api_key }}"
 #   no_log: true
 
-- block:
-    - name: check if api_key is specified
-      set_fact:
-        api_key: "{{ lookup('env', 'K8S_AUTH_API_KEY') | default(None) }}"
-      no_log: true
+- name: check if api_key is specified
+  set_fact:
+    api_key: "{{ lookup('env', 'K8S_AUTH_API_KEY') | default(None) }}"
+  no_log: true
+  when: api_key is undefined
 
+- block:
     - name: cluster {{ auth_action }}
       community.okd.openshift_auth:
         state: '{{ state }}'
@@ -31,7 +32,6 @@
         host: "{{ lookup('env','K8S_AUTH_HOST') }}"
         validate_certs: "{{ lookup('env','K8S_AUTH_VERIFY_SSL') | bool }}"
       register: openshift_auth_results
-      when: api_key is undefined
       until: openshift_auth_results is success
       delay: 3
       retries: 15
