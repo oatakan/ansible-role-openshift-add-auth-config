@@ -41,4 +41,4 @@
         api_key: "{{ openshift_auth_results.openshift_auth.api_key }}"
       when: openshift_auth_results is success
       no_log: true
-  when: api_key is undefined
+  when: api_key is undefined or api_key == ''
