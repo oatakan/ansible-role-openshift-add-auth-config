@@ -13,3 +13,10 @@
   set_fact:
     cluster: kubernetes
   when: project_list.resources is undefined or project_list.resources|length == 0
+
+- name: set cluster to openshift
+  set_fact:
+    cluster: openshift
+  when:
+    - project_list.resources is defined
+    - project_list.resources|length > 0
