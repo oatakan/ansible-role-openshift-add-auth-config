@@ -12,4 +12,4 @@
 - name: set cluster to kubernetes
   set_fact:
     cluster: kubernetes
-  when: project_list.api_found is undefined or not project_list.api_found
+  when: project_list.resources is undefined or project_list.resources|length == 0
