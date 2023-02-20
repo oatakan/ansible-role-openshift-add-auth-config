@@ -27,6 +27,7 @@
   until: openshift_auth_results is success
   delay: 3
   retries: 15
+  ignore_errors: true
 
 - name: set api_key
   set_fact:
