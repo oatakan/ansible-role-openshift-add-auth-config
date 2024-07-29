@@ -24,7 +24,11 @@
     validate_certs: "{{ lookup('env','K8S_AUTH_VERIFY_SSL') | bool }}"
   register: openshift_auth_results
   when: cluster == 'openshift'
-  until: openshift_auth_results is success
+  until: >-
+    openshift_auth_results is success or
+    (auth_action == 'logout' and
+    openshift_auth_results.status_code is defined and
+    openshift_auth_results.status_code == 404)
   delay: 3
   retries: 15
 
